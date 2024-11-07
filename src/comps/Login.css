@@ -1,0 +1,136 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #040D12;
+    color: #93B1A6;
+  }
+  
+  .login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #183D3D;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  h2 {
+    color: #5C8374;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  h3 {
+    color: #93B1A6;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #93B1A6;
+  }
+  
+  input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #5C8374;
+    border-radius: 5px;
+    background-color: #040D12;
+    color: #93B1A6;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #93B1A6;
+  }
+  
+  button {
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5C8374;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #93B1A6;
+  }
+  
+  .error, .success {
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .error {
+    background-color: #ffcccc;
+    color: #cc0000;
+  }
+  
+  .success {
+    background-color: #ccffcc;
+    color: #009900;
+  }
+  
+  .signup-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .signup-link p {
+    font-size: 14px;
+  }
+  
+  .signup-link a {
+    color: #93B1A6;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .signup-link a:hover {
+    color: #5C8374;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 600px) {
+    .login-container {
+      padding: 20px;
+      max-width: 90%;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    button {
+      font-size: 14px;
+    }
+  
+    input, label {
+      font-size: 14px;
+    }
+  
+    .signup-link p {
+      font-size: 12px;
+    }
+  }
+  
