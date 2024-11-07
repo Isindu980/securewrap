@@ -18,6 +18,7 @@ const Dashboard = () => {
         navigate('/login');
         return;
       }
+      
 
       try {
         const response = await axios.get('http://localhost:5000/api/user-dashboard', {
