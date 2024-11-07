@@ -110,6 +110,24 @@
     color: #5C8374;
   }
   
+  .password-input-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .password-toggle-icon svg {
+    font-size: 20px;
+  }
+  
+
   /* Responsive Styles */
   @media (max-width: 600px) {
     .login-container {

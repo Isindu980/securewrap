@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
 import './Login.css';
 import { Link } from 'react-router-dom';  // Import Link from react-router-dom
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -13,6 +14,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [token, setToken] = useState(null);
+  const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
   const navigate = useNavigate(); // Initialize navigate from useNavigate hook
 
   const handleLogin = async (e) => {
@@ -60,6 +62,10 @@ const Login = () => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(prevState => !prevState); // Toggle password visibility
+  };
+
   return (
     <div className="login-container">
       <h2>Login</h2>
@@ -76,12 +82,17 @@ const Login = () => {
           </div>
           <div>
             <label>Password:</label>
-            <input 
-              type="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              required 
-            />
+            <div className="password-input-container">
+              <input 
+                type={passwordVisible ? 'text' : 'password'} // Toggle password visibility
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+                required 
+              />
+              <span onClick={togglePasswordVisibility} className="password-toggle-icon">
+                {passwordVisible ? <FaEyeSlash /> : <FaEye />}  {/* Display eye or eye-slash icon */}
+              </span>
+            </div>
           </div>
           <button type="submit">Login</button>
         </form>
