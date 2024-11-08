@@ -17,6 +17,7 @@ const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
+  // Handle login request
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -36,32 +37,56 @@ const Login = () => {
     }
   };
 
+  // Handle OTP verification
   const handleOtpVerification = async (e) => {
     e.preventDefault();
-
+  
     if (!otp) {
       setErrorMessage('OTP is required.');
       return;
     }
-
+  
     try {
       const response = await axios.post('http://localhost:5000/api/verify-otp', { email, otp });
-      setToken(response.data.token);
+      const { token, role, isAdmin, userData, navigateTo } = response.data;
+      setToken(token);
       setIsOtpVerified(true);
       setSuccessMessage('OTP verified successfully.');
       setErrorMessage('');
-
-      localStorage.setItem('token', response.data.token);
-      navigate('/dashboard');
+  
+      // Store the token and user data in localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', role);
+      localStorage.setItem('userData', JSON.stringify(userData));
+  
+      // Check for the specific email 'isindu980@gmail.com'
+      if (email === 'isindu980@gmail.com') {
+        navigate('/admin-dashboard');
+      } else if (navigateTo === 'admin-dashboard') {
+        navigate('/admin-dashboard');
+      } else {
+        navigate('/dashboard');
+      }
     } catch (error) {
       setErrorMessage(error.response ? error.response.data.message : 'Server error during OTP verification.');
       setSuccessMessage('');
     }
   };
+  
+  
+  
+  
+  
 
+  // Toggle password visibility
   const togglePasswordVisibility = () => {
     setPasswordVisible(prevState => !prevState);
   };
+
+  // Forgot password function
+
+
+ 
 
   return (
     <div className="page-container">

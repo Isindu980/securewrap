@@ -86,6 +86,18 @@ p {
   color: #5C8374;
 }
 
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: -10px;
+}
+
+.signup-container label {
+  margin-top: 10px;
+  display: inline-block;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .signup-container {
