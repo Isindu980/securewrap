@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
-import { Link } from 'react-router-dom';  // Import Link from react-router-dom
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
+import { Link } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -14,8 +14,8 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [token, setToken] = useState(null);
-  const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
-  const navigate = useNavigate(); // Initialize navigate from useNavigate hook
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -46,15 +46,12 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/api/verify-otp', { email, otp });
-      setToken(response.data.token); // Update token in state
+      setToken(response.data.token);
       setIsOtpVerified(true);
       setSuccessMessage('OTP verified successfully.');
       setErrorMessage('');
-    
-      // Store token in localStorage for persistence
-      localStorage.setItem('token', response.data.token);
 
-      // Redirect to dashboard
+      localStorage.setItem('token', response.data.token);
       navigate('/dashboard');
     } catch (error) {
       setErrorMessage(error.response ? error.response.data.message : 'Server error during OTP verification.');
@@ -63,69 +60,77 @@ const Login = () => {
   };
 
   const togglePasswordVisibility = () => {
-    setPasswordVisible(prevState => !prevState); // Toggle password visibility
+    setPasswordVisible(prevState => !prevState);
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      {!isOtpSent && !isOtpVerified && (
-        <form onSubmit={handleLogin}>
-          <div>
-            <label>Email:</label>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required 
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <div className="password-input-container">
-              <input 
-                type={passwordVisible ? 'text' : 'password'} // Toggle password visibility
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
-                required 
+    <div className="page-container">
+      <button
+        className="back-to-landing-btn"
+        onClick={() => navigate('/')}
+      >
+        Back to Landing Page
+      </button>
+
+      <div className="login-container">
+        <h2>Login</h2>
+        {!isOtpSent && !isOtpVerified && (
+          <form onSubmit={handleLogin}>
+            <div>
+              <label>Email:</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
-              <span onClick={togglePasswordVisibility} className="password-toggle-icon">
-                {passwordVisible ? <FaEyeSlash /> : <FaEye />}  {/* Display eye or eye-slash icon */}
-              </span>
             </div>
-          </div>
-          <button type="submit">Login</button>
-        </form>
-      )}
+            <div>
+              <label>Password:</label>
+              <div className="password-input-container">
+                <input
+                  type={passwordVisible ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <span onClick={togglePasswordVisibility} className="password-toggle-icon">
+                  {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
+            </div>
+            <button type="submit">Login</button>
+          </form>
+        )}
 
-      {isOtpSent && !isOtpVerified && (
-        <form onSubmit={handleOtpVerification}>
+        {isOtpSent && !isOtpVerified && (
+          <form onSubmit={handleOtpVerification}>
+            <div>
+              <label>OTP:</label>
+              <input
+                type="text"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit">Verify OTP</button>
+          </form>
+        )}
+
+        {isOtpVerified && (
           <div>
-            <label>OTP:</label>
-            <input 
-              type="text" 
-              value={otp} 
-              onChange={(e) => setOtp(e.target.value)} 
-              required 
-            />
+            <h3>OTP Verified</h3>
+            <p>Redirecting to your dashboard...</p>
           </div>
-          <button type="submit">Verify OTP</button>
-        </form>
-      )}
+        )}
 
-      {isOtpVerified && (
-        <div>
-          <h3>OTP Verified</h3>
-          <p>Redirecting to your dashboard...</p>
+        {errorMessage && <div className="error">{errorMessage}</div>}
+        {successMessage && <div className="success">{successMessage}</div>}
+
+        <div className="signup-link">
+          <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
         </div>
-      )}
-
-      {errorMessage && <div className="error">{errorMessage}</div>}
-      {successMessage && <div className="success">{successMessage}</div>}
-
-      {/* Link to signup page if not registered */}
-      <div className="signup-link">
-        <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
       </div>
     </div>
   );
