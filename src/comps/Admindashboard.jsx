@@ -94,8 +94,7 @@ const AdminDashboard = () => {
       <div className="sidebar">
         <h2>Admin Panel</h2>
         <ul>
-          <li><FaUsers /> User Management</li>
-          <li><FaTasks /> Logs</li>
+
           <li onClick={handleLogout}><FaSignOutAlt /> Logout</li>
         </ul>
       </div>
@@ -126,17 +125,23 @@ const AdminDashboard = () => {
               </div>
 
               <div className="logs">
-                <h3><FaTasks /> Log Activity</h3>
-                {logs.length === 0 ? (
-                  <p>No logs available</p>
-                ) : (
-                  <ul>
-                    {logs.map((log) => (
-                      <li key={log._id}>{log.message}</li>  // Displaying the logs here
-                    ))}
-                  </ul>
-                )}
-              </div>
+  <h3><FaTasks /> Log Activity</h3>
+  {logs.length === 0 ? (
+    <p>No logs available</p>
+  ) : (
+    <ul>
+      {logs.map((log) => (
+        <li key={log.userId} style={{ marginBottom: '10px' }}>
+          <strong>User ID:</strong> {log.userId} <br />
+          <strong>Username:</strong> {log.username} <br />
+          <strong>Time:</strong> {log.timestamp} <br />
+          <strong>Activity:</strong> {log.activityType}
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+
             </>
           )}
         </div>
