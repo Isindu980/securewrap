@@ -61,8 +61,6 @@ const LandingPage = () => {
           SignUp
         </motion.button>
       </div>
-
-      {/* Sparkles */}
       <div className="sparkles-container">
         {sparkles.map((sparkle) => (
           <motion.div
@@ -76,6 +74,7 @@ const LandingPage = () => {
         ))}
       </div>
     </div>
+    
   );
 };
 
