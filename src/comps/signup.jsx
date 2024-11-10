@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 import './signup.css';
 
 const Signup = () => {
@@ -8,35 +9,38 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({ email: '', password: '' });
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
   const navigate = useNavigate();
 
-  // Secure email validation regex
+  const siteKey = '6LelVnoqAAAAAFW4C2HZXoCrUMMZjxXWRwxSUEl8';
+
   const validateEmail = (email) => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return regex.test(email);
   };
 
-  // Secure password validation
   const validatePassword = (password) => {
     const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     return regex.test(password);
   };
 
+  const handleCaptchaChange = (token) => {
+    setRecaptchaToken(token);
+  };
+
   const handleSignup = async (e) => {
     e.preventDefault();
-    setErrors({ email: '', password: '' }); // Reset errors
+    setErrors({ email: '', password: '' });
 
     let valid = true;
 
-    // Validate email
     if (!validateEmail(email)) {
       setErrors((prev) => ({ ...prev, email: 'Please enter a valid email address.' }));
       valid = false;
     }
 
-    // Validate password
     if (!validatePassword(password)) {
       setErrors((prev) => ({
         ...prev,
@@ -45,13 +49,19 @@ const Signup = () => {
       valid = false;
     }
 
-    if (!valid) return; // If validation fails, stop further processing
+    if (!recaptchaToken) {
+      setMessage('Please complete the CAPTCHA');
+      return;
+    }
+
+    if (!valid) return;
 
     try {
       const response = await axios.post('http://localhost:5000/api/signup', {
         username,
         email,
         password,
+        recaptchaToken,
       });
       setMessage(response.data.message);
       setTimeout(() => {
@@ -83,7 +93,7 @@ const Signup = () => {
         {errors.email && <p className="error">{errors.email}</p>}
 
         <input
-          type={showPassword ? 'text' : 'password'} // Toggle between text and password type
+          type={showPassword ? 'text' : 'password'}
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -95,10 +105,15 @@ const Signup = () => {
           <input
             type="checkbox"
             checked={showPassword}
-            onChange={() => setShowPassword(!showPassword)} // Toggle show password
+            onChange={() => setShowPassword(!showPassword)}
           />
           Show Password
         </label>
+
+        <ReCAPTCHA
+          sitekey={siteKey}
+          onChange={handleCaptchaChange}
+        />
 
         <button type="submit">Signup</button>
       </form>
