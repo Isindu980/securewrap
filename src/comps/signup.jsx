@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './signup.css';
 
 const Signup = () => {
@@ -8,8 +9,8 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [errors, setErrors] = useState({ email: '', password: '' });
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   // Secure email validation regex
@@ -26,7 +27,7 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setErrors({ email: '', password: '' }); // Reset errors
+    setErrors({ email: '', password: '' });
 
     let valid = true;
 
@@ -45,7 +46,7 @@ const Signup = () => {
       valid = false;
     }
 
-    if (!valid) return; // If validation fails, stop further processing
+    if (!valid) return;
 
     try {
       const response = await axios.post('http://localhost:5000/api/signup', {
@@ -60,6 +61,11 @@ const Signup = () => {
     } catch (error) {
       setMessage(error.response.data.error);
     }
+  };
+
+  // Toggle password visibility
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prevState) => !prevState);
   };
 
   return (
@@ -82,23 +88,19 @@ const Signup = () => {
         />
         {errors.email && <p className="error">{errors.email}</p>}
 
-        <input
-          type={showPassword ? 'text' : 'password'} // Toggle between text and password type
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        {errors.password && <p className="error">{errors.password}</p>}
-
-        <label>
+        <div className="password-input-container">
           <input
-            type="checkbox"
-            checked={showPassword}
-            onChange={() => setShowPassword(!showPassword)} // Toggle show password
+            type={passwordVisible ? 'text' : 'password'}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          Show Password
-        </label>
+          <span onClick={togglePasswordVisibility} className="password-toggle-icon">
+            {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
+        {errors.password && <p className="error">{errors.password}</p>}
 
         <button type="submit">Signup</button>
       </form>
