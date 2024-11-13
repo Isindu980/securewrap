@@ -86,10 +86,11 @@
     position: absolute;
     width: 10px;
     height: 10px;
+    background-color: #fff;
     border-radius: 50%;
-    background-color: white;
-    opacity: 0;
-    animation: sparkle-animation 1s ease-out forwards;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+    animation: sparkleAnimation 1.5s ease-out infinite;
   }
   
   @keyframes sparkle-animation {

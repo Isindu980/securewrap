@@ -69,7 +69,7 @@ const LandingPage = () => {
             style={{ left: sparkle.x, top: sparkle.y }}
             initial={{ opacity: 1.25 }}
             animate={{ opacity: 0, scale: 1.5 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 1.21}}
           />
         ))}
       </div>
