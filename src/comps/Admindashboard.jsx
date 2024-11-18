@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Admindashboard.css'; // Ensure this CSS file is properly linked
+import './Admindashboard.css';
 import { FaUsers, FaSignOutAlt, FaTasks, FaUser } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,15 +22,15 @@ const AdminDashboard = () => {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const adminResponse = await axios.get('http://localhost:5000/api/admin-dashboard', {
+        const adminResponse = await axios.get('https://backend-rho-roan-85.vercel.app/api/admin-dashboard', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        const usersResponse = await axios.get('http://localhost:5000/api/users', {
+        const usersResponse = await axios.get('https://backend-rho-roan-85.vercel.app/api/users', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        const logsResponse = await axios.get('http://localhost:5000/api/logs', {
+        const logsResponse = await axios.get('https://backend-rho-roan-85.vercel.app/api/logs', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -79,7 +79,7 @@ const AdminDashboard = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/api/users/${userToDelete._id}`, {
+      await axios.delete(`https://backend-rho-roan-85.vercel.app/api/users/${userToDelete._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -130,9 +130,9 @@ const AdminDashboard = () => {
       </div>
 
       <div className="main-content">
-        <div className="top-bar">
-          <h2 className="typing-text">Welcome, {adminData?.username}</h2>
-          {adminData && <p>{adminData.email}</p>}
+         <div className="top-bar">
+             <h2 className="typing-text">Welcome, {adminData?.username}</h2>
+            {adminData && <p>{adminData.email}</p>}
         </div>
 
         <div className="content-section">
@@ -156,9 +156,7 @@ const AdminDashboard = () => {
                     {users.map((user) => (
                       <li key={user._id}>
                         <FaUser /> {user.username} ({user.email})
-                        <button onClick={() => handleDeleteClick(user)} className="action-button">
-                          Delete
-                        </button>
+                        <button onClick={() => handleDeleteClick(user)}>Delete</button>
                       </li>
                     ))}
                   </ul>

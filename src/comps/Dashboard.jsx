@@ -23,7 +23,7 @@ const Dashboard = () => {
       }
 
       try {
-        const response = await axios.get('http://localhost:5000/api/user-dashboard', {
+        const response = await axios.get('https://backend-rho-roan-85.vercel.app/api/user-dashboard', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -58,7 +58,7 @@ const Dashboard = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/update-username', { username: newUsername }, {
+      const response = await axios.post('https://backend-rho-roan-85.vercel.app/api/update-username', { username: newUsername }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
