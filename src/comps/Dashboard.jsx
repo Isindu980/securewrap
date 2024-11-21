@@ -23,7 +23,7 @@ const Dashboard = () => {
       }
 
       try {
-        const response = await axios.get('https://backend-theta-puce-33.vercel.app/api/user-dashboard', {
+        const response = await axios.get('https://backend-theta-puce-33.vercel.app/?vercelToolbarCode=2LKJ5VBZV-PfTH6/api/user-dashboard', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -58,7 +58,7 @@ const Dashboard = () => {
     }
 
     try {
-      const response = await axios.post('https://backend-theta-puce-33.vercel.app/api/update-username', { username: newUsername }, {
+      const response = await axios.post('https://backend-theta-puce-33.vercel.app/?vercelToolbarCode=2LKJ5VBZV-PfTH6/api/update-username', { username: newUsername }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

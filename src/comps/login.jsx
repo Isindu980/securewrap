@@ -27,7 +27,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post('https://backend-theta-puce-33.vercel.app/api/login', { email, password });
+      const response = await axios.post('https://backend-theta-puce-33.vercel.app/?vercelToolbarCode=2LKJ5VBZV-PfTH6/api/login', { email, password });
       setSuccessMessage(response.data.message);
       setIsOtpSent(true);
       setErrorMessage('');
@@ -47,7 +47,7 @@ const Login = () => {
     }
   
     try {
-      const response = await axios.post('https://backend-theta-puce-33.vercel.app/api/verify-otp', { email, otp });
+      const response = await axios.post('https://backend-theta-puce-33.vercel.app/?vercelToolbarCode=2LKJ5VBZV-PfTH6/api/verify-otp', { email, otp });
       const { token, role, isAdmin, userData, navigateTo } = response.data;
       setToken(token);
       setIsOtpVerified(true);

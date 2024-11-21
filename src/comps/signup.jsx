@@ -49,7 +49,7 @@ const Signup = () => {
     if (!valid) return;
 
     try {
-      const response = await axios.post('https://backend-theta-puce-33.vercel.app/api/signup', {
+      const response = await axios.post('https://backend-theta-puce-33.vercel.app/?vercelToolbarCode=2LKJ5VBZV-PfTH6/api/signup', {
         username,
         email,
         password,

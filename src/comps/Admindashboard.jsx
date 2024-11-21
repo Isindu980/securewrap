@@ -22,15 +22,15 @@ const AdminDashboard = () => {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const adminResponse = await axios.get('https://backend-theta-puce-33.vercel.app/api/admin-dashboard', {
+        const adminResponse = await axios.get('https://backend-theta-puce-33.vercel.app/?vercelToolbarCode=2LKJ5VBZV-PfTH6/api/admin-dashboard', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        const usersResponse = await axios.get('https://backend-theta-puce-33.vercel.app/api/users', {
+        const usersResponse = await axios.get('https://backend-theta-puce-33.vercel.app/?vercelToolbarCode=2LKJ5VBZV-PfTH6/api/users', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        const logsResponse = await axios.get('https://backend-theta-puce-33.vercel.app/api/logs', {
+        const logsResponse = await axios.get('https://backend-theta-puce-33.vercel.app/?vercelToolbarCode=2LKJ5VBZV-PfTH6/api/logs', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -79,7 +79,7 @@ const AdminDashboard = () => {
     }
 
     try {
-      await axios.delete(`https://backend-theta-puce-33.vercel.app/api/users/${userToDelete._id}`, {
+      await axios.delete(`https://backend-theta-puce-33.vercel.app/?vercelToolbarCode=2LKJ5VBZV-PfTH6/api/users/${userToDelete._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
