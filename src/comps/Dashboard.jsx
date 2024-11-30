@@ -23,7 +23,7 @@ const Dashboard = () => {
       }
 
       try {
-        const response = await axios.get('https://secure-wrap-56515c48269a.herokuapp.com/api/user-dashboard', {
+        const response = await axios.get('https://securewrap-1621182990b0.herokuapp.com/user-dashboard', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -58,7 +58,7 @@ const Dashboard = () => {
     }
 
     try {
-      const response = await axios.post('https://secure-wrap-56515c48269a.herokuapp.com/api/update-username', { username: newUsername }, {
+      const response = await axios.post('https://securewrap-1621182990b0.herokuapp.com/update-username', { username: newUsername }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

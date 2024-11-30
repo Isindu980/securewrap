@@ -22,15 +22,15 @@ const AdminDashboard = () => {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const adminResponse = await axios.get('https://secure-wrap-56515c48269a.herokuapp.com/api/admin-dashboard', {
+        const adminResponse = await axios.get('https://securewrap-1621182990b0.herokuapp.com/api/admin-dashboard', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        const usersResponse = await axios.get('https://secure-wrap-56515c48269a.herokuapp.com/api/users', {
+        const usersResponse = await axios.get('https://securewrap-1621182990b0.herokuapp.com/api/users', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        const logsResponse = await axios.get('https://secure-wrap-56515c48269a.herokuapp.com/api/logs', {
+        const logsResponse = await axios.get('https://securewrap-1621182990b0.herokuapp.com/api/logs', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -79,7 +79,7 @@ const AdminDashboard = () => {
     }
 
     try {
-      await axios.delete(`https://secure-wrap-56515c48269a.herokuapp.com/api/users/${userToDelete._id}`, {
+      await axios.delete(`https://securewrap-1621182990b0.herokuapp.com/users/${userToDelete._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
