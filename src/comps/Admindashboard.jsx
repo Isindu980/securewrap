@@ -79,7 +79,7 @@ const AdminDashboard = () => {
     }
 
     try {
-      await axios.delete(`https://securewrap-1621182990b0.herokuapp.com/users/${userToDelete._id}`, {
+      await axios.delete(`https://securewrap-1621182990b0.herokuapp.com/api/users/${userToDelete._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
