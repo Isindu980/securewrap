@@ -47,7 +47,7 @@ const Login = () => {
     }
   
     try {
-      const response = await axios.post('https://securewrap-1621182990b0.herokuapp.com/verify-otp', { email, otp });
+      const response = await axios.post('https://securewrap-1621182990b0.herokuapp.com/api/verify-otp', { email, otp });
       const { token, role, isAdmin, userData, navigateTo } = response.data;
       setToken(token);
       setIsOtpVerified(true);
