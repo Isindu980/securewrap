@@ -49,7 +49,7 @@ const Signup = () => {
     if (!valid) return;
 
     try {
-      const response = await axios.post('https://securewrap-1621182990b0.herokuapp.com/signup', {
+      const response = await axios.post('https://securewrap-1621182990b0.herokuapp.com/api/signup', {
         username,
         email,
         password,
