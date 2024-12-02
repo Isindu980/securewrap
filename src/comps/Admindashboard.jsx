@@ -5,6 +5,7 @@ import './Admindashboard.css';
 import { FaUsers, FaSignOutAlt, FaTasks, FaUser } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactPaginate from 'react-paginate';
 
 const AdminDashboard = () => {
   const [adminData, setAdminData] = useState(null);
@@ -15,6 +16,8 @@ const AdminDashboard = () => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
   const [view, setView] = useState('default');
+  const [currentPage, setCurrentPage] = useState(0);
+  const logsPerPage = 10;
   const navigate = useNavigate();
 
   // Fetch admin, users, and logs data
@@ -116,23 +119,23 @@ const AdminDashboard = () => {
     </div>
   );
 
+  const handlePageClick = (data) => {
+    setCurrentPage(data.selected);
+  };
+
+  const offset = currentPage * logsPerPage;
+  const currentLogs = logs.slice(offset, offset + logsPerPage);
+
   return (
     <div className="dashboard-container">
       <ToastContainer /> {/* Add ToastContainer to show notifications */}
-
-      <div className="sidebar">
-        <h2>Admin Panel</h2>
-        <ul>
-          <li onClick={() => setView('users')}><FaUsers /> View Users</li>
-          <li onClick={() => setView('logs')}><FaTasks /> View Logs</li>
-          <li onClick={handleLogout}><FaSignOutAlt /> Logout</li>
-        </ul>
-      </div>
-
+      <button onClick={handleLogout}>
+        Logout
+      </button>
       <div className="main-content">
-         <div className="top-bar">
-             <h2 className="typing-text">Welcome, {adminData?.username}</h2>
-            {adminData && <p>{adminData.email}</p>}
+        <div className="top-bar">
+          <h2 className="typing-text">Welcome, {adminData?.username}</h2>
+          {adminData && <p>{adminData.email}</p>}
         </div>
 
         <div className="content-section">
@@ -169,26 +172,39 @@ const AdminDashboard = () => {
                   {logs.length === 0 ? (
                     <p>No logs available</p>
                   ) : (
-                    <table className="logs-table">
-                      <thead>
-                        <tr>
-                          <th>User ID</th>
-                          <th>Username</th>
-                          <th>Timestamp</th>
-                          <th>Activity</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {logs.map((log) => (
-                          <tr key={log.userId}>
-                            <td>{log.userId}</td>
-                            <td>{log.username}</td>
-                            <td>{log.timestamp}</td>
-                            <td>{log.activityType}</td>
+                    <>
+                      <table className="logs-table">
+                        <thead>
+                          <tr>
+                            <th>User ID</th>
+                            <th>Username</th>
+                            <th>Timestamp</th>
+                            <th>Activity</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                          {currentLogs.map((log) => (
+                            <tr key={log.userId + log.timestamp}>
+                              <td>{log.userId}</td>
+                              <td>{log.username}</td>
+                              <td>{log.timestamp}</td>
+                              <td>{log.activityType}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      <ReactPaginate
+                        previousLabel={'previous'}
+                        nextLabel={'next'}
+                        breakLabel={'...'}
+                        pageCount={Math.ceil(logs.length / logsPerPage)}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        onPageChange={handlePageClick}
+                        containerClassName={'pagination'}
+                        activeClassName={'active'}
+                      />
+                    </>
                   )}
                 </div>
               )}
