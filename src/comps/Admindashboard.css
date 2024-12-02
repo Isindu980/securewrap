@@ -169,6 +169,7 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s;
     border: 1px solid #dee2e6;
+    overflow-x: auto; /* Add horizontal scroll */
 }
 
 .user-management:hover,
@@ -218,6 +219,26 @@
 }
 
 /* Logs section */
+.logs-table-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.logs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.logs-table th, .logs-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.logs-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
 .logs-table {
     width: 100%;
     border-collapse: collapse;
