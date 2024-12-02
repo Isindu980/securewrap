@@ -344,4 +344,57 @@
     }
 }
 
+/* Pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
 
+.pagination li {
+    margin: 5px;
+}
+
+.pagination li a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.pagination li a:hover {
+    background-color: var(--accent-color);
+}
+
+.pagination .active a {
+    background-color: var(--highlight-color);
+    color: var(--dark-bg);
+}
+
+.pagination .disabled a {
+    background-color: var(--sidebar-bg);
+    color: var(--light-text);
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pagination li a {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination li a {
+        padding: 4px 8px;
+        font-size: 0.8em;
+    }
+}
