@@ -17,19 +17,11 @@ const AdminDashboard = () => {
   const [userToDelete, setUserToDelete] = useState(null);
   const [view, setView] = useState('default');
   const [currentPage, setCurrentPage] = useState(0);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const logsPerPage = 10; // Ensure only 10 logs per page
   const navigate = useNavigate();
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
   const handleMenuItemClick = (view) => {
     setView(view);
-    if (window.innerWidth <= 768) {
-      setSidebarOpen(false); // Close the sidebar when a menu item is clicked on mobile
-    }
   };
 
   // Fetch admin, users, and logs data
@@ -142,98 +134,91 @@ const AdminDashboard = () => {
     <div className="dashboard-container">
       <ToastContainer /> {/* Add ToastContainer to show notifications */}
 
-      <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
-        <h2>Admin Panel</h2>
-        <ul>
-          <li onClick={() => handleMenuItemClick('users')}><FaUsers /> View Users</li>
-          <li onClick={() => handleMenuItemClick('logs')}><FaTasks /> View Logs</li>
-          <li onClick={handleLogout}><FaSignOutAlt /> Logout</li>
-        </ul>
+      <div className="top-bar">
+        <h2 className="typing-text">Welcome, {adminData?.username}</h2>
+        {adminData && <p>{adminData.email}</p>}
+        <div className="button-group">
+          <button className="btn" onClick={() => handleMenuItemClick('users')}><FaUsers /> View Users</button>
+          <button className="btn" onClick={() => handleMenuItemClick('logs')}><FaTasks /> View Logs</button>
+          <button className="btn btn-danger" onClick={handleLogout}><FaSignOutAlt /> Logout</button>
+        </div>
       </div>
 
-      <div className="main-content">
-        <div className="top-bar">
-          <FaBars className="hamburger-menu" onClick={toggleSidebar} />
-          <h2 className="typing-text">Welcome, {adminData?.username}</h2>
-          {adminData && <p>{adminData.email}</p>}
-        </div>
+      <div className="content-section">
+        {error && <p className="error-message">{error}</p>}
 
-        <div className="content-section">
-          {error && <p className="error-message">{error}</p>}
+        {loading ? (
+          <p>Loading data...</p>
+        ) : (
+          <>
+            {view === 'default' && (
+              <div>
+                <h3>Welcome admin!</h3>
+                <p>Your email is: {adminData?.email}</p>
+              </div>
+            )}
 
-          {loading ? (
-            <p>Loading data...</p>
-          ) : (
-            <>
-              {view === 'default' && (
-                <div>
-                  <h3>Welcome admin!</h3>
-                  <p>Your email is: {adminData?.email}</p>
-                </div>
-              )}
+            {view === 'users' && (
+              <div className="user-management">
+                <h3><FaUsers /> All Users</h3>
+                <ul className="user-list">
+                  {users.map((user) => (
+                    <li key={user._id}>
+                      <FaUser /> {user.username} ({user.email})
+                      <button onClick={() => handleDeleteClick(user)}>Delete</button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-              {view === 'users' && (
-                <div className="user-management">
-                  <h3><FaUsers /> All Users</h3>
-                  <ul className="user-list">
-                    {users.map((user) => (
-                      <li key={user._id}>
-                        <FaUser /> {user.username} ({user.email})
-                        <button onClick={() => handleDeleteClick(user)}>Delete</button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {view === 'logs' && (
-                <div className="logs">
-                  <h3><FaTasks /> Log Activity</h3>
-                  {logs.length === 0 ? (
-                    <p>No logs available</p>
-                  ) : (
-                    <>
-                      <table className="logs-table">
-                        <thead>
-                          <tr>
-                            <th>User ID</th>
-                            <th>Username</th>
-                            <th>Timestamp</th>
-                            <th>Activity</th>
+            {view === 'logs' && (
+              <div className="logs">
+                <h3><FaTasks /> Log Activity</h3>
+                {logs.length === 0 ? (
+                  <p>No logs available</p>
+                ) : (
+                  <>
+                    <table className="logs-table">
+                      <thead>
+                        <tr>
+                          <th>User ID</th>
+                          <th>Username</th>
+                          <th>Timestamp</th>
+                          <th>Activity</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {currentLogs.map((log) => (
+                          <tr key={log.userId + log.timestamp}>
+                            <td>{log.userId}</td>
+                            <td>{log.username}</td>
+                            <td>{log.timestamp}</td>
+                            <td>{log.activityType}</td>
                           </tr>
-                        </thead>
-                        <tbody>
-                          {currentLogs.map((log) => (
-                            <tr key={log.userId + log.timestamp}>
-                              <td>{log.userId}</td>
-                              <td>{log.username}</td>
-                              <td>{log.timestamp}</td>
-                              <td>{log.activityType}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                      <ReactPaginate
-                        previousLabel={'previous'}
-                        nextLabel={'next'}
-                        breakLabel={'...'}
-                        pageCount={Math.ceil(logs.length / logsPerPage)}
-                        marginPagesDisplayed={2}
-                        pageRangeDisplayed={5}
-                        onPageChange={handlePageClick}
-                        containerClassName={'pagination'}
-                        activeClassName={'active'}
-                      />
-                    </>
-                  )}
-                </div>
-              )}
-            </>
-          )}
-        </div>
-
-        {showConfirm && <ConfirmModal />}
+                        ))}
+                      </tbody>
+                    </table>
+                    <ReactPaginate
+                      previousLabel={'previous'}
+                      nextLabel={'next'}
+                      breakLabel={'...'}
+                      pageCount={Math.ceil(logs.length / logsPerPage)}
+                      marginPagesDisplayed={2}
+                      pageRangeDisplayed={5}
+                      onPageChange={handlePageClick}
+                      containerClassName={'pagination'}
+                      activeClassName={'active'}
+                    />
+                  </>
+                )}
+              </div>
+            )}
+          </>
+        )}
       </div>
+
+      {showConfirm && <ConfirmModal />}
     </div>
   );
 };
