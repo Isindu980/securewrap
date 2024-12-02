@@ -217,3 +217,37 @@
         padding: 6px;
     }
 }
+
+
+/* Pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.pagination button:hover {
+    background-color: var(--highlight-color);
+}
+
+.pagination button.disabled {
+    background-color: var(--accent-color);
+    cursor: not-allowed;
+}
+
+.pagination button.active {
+    background-color: var(--highlight-color);
+}
