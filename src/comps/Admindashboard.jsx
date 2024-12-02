@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Admindashboard.css';
-import { FaUsers, FaSignOutAlt, FaTasks, FaUser } from 'react-icons/fa';
+import { FaUsers, FaSignOutAlt, FaTasks, FaUser, FaBars } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReactPaginate from 'react-paginate';
@@ -17,8 +17,20 @@ const AdminDashboard = () => {
   const [userToDelete, setUserToDelete] = useState(null);
   const [view, setView] = useState('default');
   const [currentPage, setCurrentPage] = useState(0);
-  const logsPerPage = 10;
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const logsPerPage = 10; // Ensure only 10 logs per page
   const navigate = useNavigate();
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const handleMenuItemClick = (view) => {
+    setView(view);
+    if (window.innerWidth <= 768) {
+      setSidebarOpen(false); // Close the sidebar when a menu item is clicked on mobile
+    }
+  };
 
   // Fetch admin, users, and logs data
   useEffect(() => {
@@ -129,11 +141,19 @@ const AdminDashboard = () => {
   return (
     <div className="dashboard-container">
       <ToastContainer /> {/* Add ToastContainer to show notifications */}
-      <button onClick={handleLogout}>
-        Logout
-      </button>
+
+      <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
+        <h2>Admin Panel</h2>
+        <ul>
+          <li onClick={() => handleMenuItemClick('users')}><FaUsers /> View Users</li>
+          <li onClick={() => handleMenuItemClick('logs')}><FaTasks /> View Logs</li>
+          <li onClick={handleLogout}><FaSignOutAlt /> Logout</li>
+        </ul>
+      </div>
+
       <div className="main-content">
         <div className="top-bar">
+          <FaBars className="hamburger-menu" onClick={toggleSidebar} />
           <h2 className="typing-text">Welcome, {adminData?.username}</h2>
           {adminData && <p>{adminData.email}</p>}
         </div>
