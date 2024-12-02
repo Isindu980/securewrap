@@ -212,8 +212,6 @@
     background-color: #ff5a5f;
 }
 
-
-
 /* Logs section */
 .logs-table {
     width: 100%;
@@ -294,23 +292,35 @@
       width: 100%;
       letter-spacing: 1px;
     }
-  }
-  
-  .typing-text {
+}
+
+.typing-text {
     display: inline-block;
-    font-family: 'Pacifico', cursive; /* Change to a more hand-written style */
+    font-family: 'Pacifico', cursive;
     font-size: 2rem;
     white-space: nowrap;
     overflow: hidden;
-    /* Cursor effect */
-    animation: handwriting 4s steps(50) 1s 1 normal both; /* More fluid writing effect */
-  }
-  
-  
-  
-  
+    animation: handwriting 4s steps(50) 1s 1 normal both;
+}
 
+/* Hamburger Menu Styles */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
 
+.hamburger-menu div {
+    width: 30px;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 5px;
+}
+
+.sidebar-active {
+    transform: translateX(0);
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -321,12 +331,25 @@
     .sidebar {
         width: 100%;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
         padding: 10px;
+        display: none;
+    }
+
+    .sidebar-active {
+        display: flex;
     }
 
     .main-content {
         padding: 15px;
+    }
+
+    .hamburger-menu {
+        display: flex;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
     }
 }
 
@@ -342,6 +365,32 @@
     .top-bar h2 {
         font-size: 1.4em;
     }
+
+    .pagination li a {
+        padding: 4px 8px;
+        font-size: 0.8em;
+    }
 }
 
+/* Pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    list-style-type: none;
+}
 
+.pagination li a {
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    color: var(--text-color);
+    margin: 0 5px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.pagination li a:hover {
+    background-color: #557a95;
+}
