@@ -12,6 +12,10 @@ body {
   font-family: 'Arial', sans-serif;
   background-color: var(--light-bg);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .landing-page {
@@ -25,6 +29,8 @@ body {
   text-align: center;
   position: relative;
   padding: 20px 10px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .title {
@@ -138,6 +144,10 @@ body {
     width: 100%;
     padding: 12px 0;
     font-size: 1.2rem;
+  }
+
+  .landing-page {
+    padding: 10px 5px;
   }
 }
 

@@ -27,6 +27,9 @@
     background-color: var(--dark-bg);
     color: var(--text-color);
     overflow: hidden;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Sidebar styles */
@@ -40,6 +43,8 @@
     gap: 20px;
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
     animation: slideIn 0.5s ease-in-out;
+    border-right: 1px solid var(--accent-color);
+    box-shadow: none;
 }
 
 @keyframes slideIn {
@@ -104,6 +109,8 @@
     overflow-y: auto;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
     animation: fadeIn 0.5s ease-in-out;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes fadeIn {
@@ -326,6 +333,7 @@
 @media (max-width: 768px) {
     .dashboard-container {
         flex-direction: column;
+        padding: 10px;
     }
 
     .sidebar {
@@ -334,6 +342,7 @@
         justify-content: space-between;
         padding: 10px;
         display: none;
+        box-shadow: none;
     }
 
     .sidebar-active {

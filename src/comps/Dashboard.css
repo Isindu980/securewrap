@@ -22,8 +22,10 @@ body {
 /* Main Container */
 .dashboard-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     min-height: 100vh;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Sidebar Styles */
@@ -34,8 +36,8 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    border-right: 2px solid #d9e2ec;
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid var(--accent-color);
+    box-shadow: none;
 }
 
 .sidebar h2 {
@@ -100,7 +102,7 @@ body {
     padding: 20px;
     background: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
 }
 
@@ -173,12 +175,14 @@ body {
 @media screen and (max-width: 768px) {
     .dashboard-container {
         flex-direction: column;
+        padding: 10px;
     }
 
     .sidebar {
         width: 100%;
         box-shadow: none;
         border-bottom: 2px solid #d9e2ec;
+        padding: 10px;
     }
 
     .main-content {
