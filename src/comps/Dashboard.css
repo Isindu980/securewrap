@@ -8,10 +8,9 @@
 /* Body Styles */
 body {
     font-family: 'Arial', sans-serif;
-    /* Dark Gradient Background */
-background: linear-gradient(to right, #0D1B2A, #1B263B, #415A77, #778DA9);
-
-    color: #2E3A45;
+    background: linear-gradient(to right, #0D1B2A, #1B263B, #415A77, #778DA9);
+    color: #E0E0E0;
+    line-height: 1.6;
 }
 
 /* Dark Mode Styles */
@@ -22,9 +21,9 @@ background: linear-gradient(to right, #0D1B2A, #1B263B, #415A77, #778DA9);
 
 /* Main Container */
 .dashboard-container {
-    display:contents;
-    height: 100vh;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
 }
 
 /* Sidebar Styles */
@@ -35,13 +34,12 @@ background: linear-gradient(to right, #0D1B2A, #1B263B, #415A77, #778DA9);
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     border-right: 2px solid #0D3D3D;
     box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 20px;
     text-align: center;
     color: #FFFFFF;
@@ -67,7 +65,6 @@ background: linear-gradient(to right, #0D1B2A, #1B263B, #415A77, #778DA9);
 .nav-links {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .nav-links li {
@@ -100,15 +97,15 @@ background: linear-gradient(to right, #0D1B2A, #1B263B, #415A77, #778DA9);
 /* Main Content Styles */
 .main-content {
     flex: 1;
-    padding: 30px;
-    background: #F0F8FF;
+    padding: 20px;
+    background: #F8F9FA;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
 }
 
 .content h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 15px;
     color: #1B4F4F;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
@@ -116,7 +113,7 @@ background: linear-gradient(to right, #0D1B2A, #1B263B, #415A77, #778DA9);
 
 .content p {
     margin: 10px 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #333333;
 }
 
@@ -150,7 +147,7 @@ background: linear-gradient(to right, #0D1B2A, #1B263B, #415A77, #778DA9);
     background: linear-gradient(to right, #1B4F4F, #126666);
     color: #FFFFFF;
     border: none;
-    padding: 5px 10px;
+    padding: 12px;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s;
@@ -180,24 +177,23 @@ background: linear-gradient(to right, #0D1B2A, #1B263B, #415A77, #778DA9);
 
     .sidebar {
         width: 100%;
-        height: auto;
         box-shadow: none;
         border-bottom: 2px solid #0D3D3D;
     }
 
     .main-content {
-        padding: 20px;
+        padding: 15px;
     }
 }
 
 /* Small Devices (Mobile Phones) */
 @media screen and (max-width: 480px) {
     .sidebar h2 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
     .user-info h3 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .nav-links li {
@@ -215,29 +211,48 @@ background: linear-gradient(to right, #0D1B2A, #1B263B, #415A77, #778DA9);
     }
 }
 
+/* SVG Animations */
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 
 .svg {
-	font-family: "Akaya Kanadaka", sans-serif;
-	width: 100%; height: 100%;
-}
-svg text {
-	animation: stroke 5s infinite alternate;
-	stroke-width: 2;
-	stroke: #365FA0;
-	font-size: 95px;
-}
-@keyframes stroke {
-	0%   {
-		fill: rgba(72,138,204,0); stroke: #1B4F4F;
-		stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
-	}
-	70%  {fill: rgba(72,138,204,0); stroke: #1B4F4F; }
-	80%  {fill: rgba(72,138,204,0); stroke:#1B4F4F; stroke-width: 3; }
-	100% {
-		fill: #1B4F4F; stroke: rgba(54,95,160,0);
-		stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
-	}
+    font-family: "Satisfy", sans-serif;
+    width: 100%;
+    height: 100%;
 }
 
-.wrapper {background-color: transparent};
+svg text {
+    animation: stroke 5s infinite alternate;
+    stroke-width: 2;
+    stroke: #365FA0;
+    font-size: 95px;
+}
+
+@keyframes stroke {
+    0% {
+        fill: rgba(72, 138, 204, 0);
+        stroke: #1B4F4F;
+        stroke-dashoffset: 25%;
+        stroke-dasharray: 0 50%;
+        stroke-width: 2;
+    }
+    70% {
+        fill: rgba(72, 138, 204, 0);
+        stroke: #1B4F4F;
+    }
+    80% {
+        fill: rgba(72, 138, 204, 0);
+        stroke: #1B4F4F;
+        stroke-width: 3;
+    }
+    100% {
+        fill: #1B4F4F;
+        stroke: rgba(54, 95, 160, 0);
+        stroke-dashoffset: -25%;
+        stroke-dasharray: 50% 0;
+        stroke-width: 0;
+    }
+}
+
+.wrapper {
+    background-color: transparent;
+}
