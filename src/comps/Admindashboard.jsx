@@ -25,6 +25,11 @@ const AdminDashboard = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const handleMenuItemClick = (view) => {
+    setView(view);
+    setSidebarOpen(false); // Close the sidebar when a menu item is clicked
+  };
+
   // Fetch admin, users, and logs data
   useEffect(() => {
     const fetchData = async () => {
@@ -138,8 +143,8 @@ const AdminDashboard = () => {
       <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <h2>Admin Panel</h2>
         <ul>
-          <li onClick={() => setView('users')}><FaUsers /> View Users</li>
-          <li onClick={() => setView('logs')}><FaTasks /> View Logs</li>
+          <li onClick={() => handleMenuItemClick('users')}><FaUsers /> View Users</li>
+          <li onClick={() => handleMenuItemClick('logs')}><FaTasks /> View Logs</li>
           <li onClick={handleLogout}><FaSignOutAlt /> Logout</li>
         </ul>
       </div>
