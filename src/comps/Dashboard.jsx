@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Dashboard.css';
-import { FaUserEdit, FaSignOutAlt, FaHome, FaUser } from 'react-icons/fa';
+import { FaUserEdit } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -80,38 +80,24 @@ const Dashboard = () => {
   return (
     <div className={`dashboard-container ${darkMode ? 'dark-mode' : ''}`}>
       <ToastContainer />
-
-      {/* Sidebar */}
-      <div className="sidebar">
-        <h2>User Dashboard</h2>
-        <div className="user-info">
-          
-        </div>
-        <ul className="nav-links">
-          <li onClick={handleLogout}>
-            <FaSignOutAlt /> Logout
-          </li>
-        </ul>
-        <button onClick={toggleDarkMode}>
-          {darkMode ? 'Light Mode' : 'Dark Mode'}
-        </button>
-      </div>
-
-      {/* Main Content Area */}
+      <button onClick={toggleDarkMode}>
+        {darkMode ? 'Light Mode' : 'Dark Mode'}
+      </button>
+      <button onClick={handleLogout}>
+        Logout
+      </button>
       <div className="main-content">
         {error && <p className="error-message">{error}</p>}
         {userData ? (
           <div className="content">
             <div className="wrapper">
-               <svg height="100" width="100%" viewBox="0 0 100 100">
-               <text x="50%" y="50%" dy=".35em" textAnchor="middle" fontSize="24">
+              <svg height="100" width="100%" viewBox="0 0 100 100">
+                <text x="50%" y="50%" dy=".35em" textAnchor="middle" fontSize="24">
                   Welcome, {userData.username}
                 </text>
-                </svg>
+              </svg>
             </div>
             <p>Email: {userData.email}</p>
-            
-
             <form className="update-form" onSubmit={handleProfileUpdate}>
               <input
                 type="text"
