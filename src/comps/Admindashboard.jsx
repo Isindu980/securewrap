@@ -17,7 +17,7 @@ const AdminDashboard = () => {
   const [userToDelete, setUserToDelete] = useState(null);
   const [view, setView] = useState('default');
   const [currentPage, setCurrentPage] = useState(0);
-  const logsPerPage = 10;
+  const logsPerPage = 10; // Ensure only 10 logs per page
   const navigate = useNavigate();
 
   // Fetch admin, users, and logs data
