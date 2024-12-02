@@ -175,45 +175,45 @@ const AdminDashboard = () => {
 
               {view === 'logs' && (
                 <div className="logs">
-                  <h3><FaTasks /> Log Activity</h3>
-                  {logs.length === 0 ? (
-                    <p>No logs available</p>
-                  ) : (
-                    <>
-                      <table className="logs-table">
-                        <thead>
-                          <tr>
-                            <th>User ID</th>
-                            <th>Username</th>
-                            <th>Timestamp</th>
-                            <th>Activity</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {currentLogs.map((log) => (
-                            <tr key={log.userId}>
-                              <td>{log.userId}</td>
-                              <td>{log.username}</td>
-                              <td>{log.timestamp}</td>
-                              <td>{log.activityType}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                      <ReactPaginate
-                        previousLabel={'previous'}
-                        nextLabel={'next'}
-                        breakLabel={'...'}
-                        pageCount={Math.ceil(logs.length / logsPerPage)}
-                        marginPagesDisplayed={2}
-                        pageRangeDisplayed={5}
-                        onPageChange={handlePageClick}
-                        containerClassName={'pagination'}
-                        activeClassName={'active'}
-                      />
-                    </>
-                  )}
-                </div>
+    <h3><FaTasks /> Log Activity</h3>
+    {logs.length === 0 ? (
+      <p>No logs available</p>
+    ) : (
+      <>
+        <table className="logs-table">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Username</th>
+              <th>Timestamp</th>
+              <th>Activity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentLogs.map((log) => (
+              <tr key={log.userId + log.timestamp}>
+                <td>{log.userId}</td>
+                <td>{log.username}</td>
+                <td>{log.timestamp}</td>
+                <td>{log.activityType}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <ReactPaginate
+          previousLabel={'previous'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          pageCount={Math.ceil(logs.length / logsPerPage)}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+        />
+      </>
+    )}
+  </div>
               )}
             </>
           )}
