@@ -5,6 +5,8 @@ import './Admindashboard.css';
 import { FaUsers, FaSignOutAlt, FaTasks, FaUser } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const AdminDashboard = () => {
   const [adminData, setAdminData] = useState(null);
@@ -15,6 +17,8 @@ const AdminDashboard = () => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
   const [view, setView] = useState('default');
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const navigate = useNavigate();
 
   // Fetch admin, users, and logs data
@@ -52,6 +56,32 @@ const AdminDashboard = () => {
 
     fetchData();
   }, [navigate]);
+
+  // Fetch logs data with date filter
+  useEffect(() => {
+    const fetchLogs = async () => {
+      const token = localStorage.getItem('token');
+      try {
+        const logsResponse = await axios.get('https://securewrap-1621182990b0.herokuapp.com/api/logs', {
+          headers: { Authorization: `Bearer ${token}` },
+          params: {
+            startDate: startDate.toISOString(),
+            endDate: endDate.toISOString(),
+          },
+        });
+
+        if (logsResponse.data.success) {
+          setLogs(logsResponse.data.logs || []);
+        } else {
+          setError('Failed to fetch logs.');
+        }
+      } catch (err) {
+        setError('Error fetching logs.');
+      }
+    };
+
+    fetchLogs();
+  }, [startDate, endDate]);
 
   // Logout handler
   const handleLogout = () => {
@@ -166,6 +196,10 @@ const AdminDashboard = () => {
               {view === 'logs' && (
                 <div className="logs">
                   <h3><FaTasks /> Log Activity</h3>
+                  <div className="date-filters">
+                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                    <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+                  </div>
                   {logs.length === 0 ? (
                     <p>No logs available</p>
                   ) : (
