@@ -224,6 +224,11 @@
     overflow-y: auto;
 }
 
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
 .logs-table {
     width: 100%;
     border-collapse: collapse;
@@ -378,6 +383,10 @@
         left: 20px;
         z-index: 2;
     }
+
+    .logs-table th, .logs-table td {
+        padding: 6px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -396,6 +405,10 @@
     .pagination li a {
         padding: 4px 8px;
         font-size: 0.8em;
+    }
+
+    .logs-table th, .logs-table td {
+        padding: 4px;
     }
 }
 
