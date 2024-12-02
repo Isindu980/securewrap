@@ -13,8 +13,8 @@
     --primary-color: #9fb3c8;
     --accent-color: #bcccdc;
     --highlight-color: #333;
-    --text-color: #333;
-    --light-text: #666;
+    --text-color: #000; /* Changed to dark color */
+    --light-text: #333; /* Changed to dark color */
     --error-color: #EF233C;
 }
 

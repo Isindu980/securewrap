@@ -9,14 +9,14 @@
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(to right, #f0f4f8, #d9e2ec, #bcccdc, #9fb3c8);
-    color: #333;
+    color: #000; /* Changed to dark color */
     line-height: 1.6;
 }
 
 /* Dark Mode Styles */
 .dark-mode {
     background-color: #121212;
-    color: #E0E0E0;
+    color: #000; /* Changed to dark color */
 }
 
 /* Main Container */
