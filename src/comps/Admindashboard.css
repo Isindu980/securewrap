@@ -218,3 +218,9 @@ body {
     display: none; /* Hide sidebar when a menu item is clicked */
   }
 }
+
+@media (min-width: 769px) {
+  .sidebar {
+    transform: translateX(0); /* Ensure sidebar is visible in normal web view */
+  }
+}
