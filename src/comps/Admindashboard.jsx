@@ -27,7 +27,9 @@ const AdminDashboard = () => {
 
   const handleMenuItemClick = (view) => {
     setView(view);
-    setSidebarOpen(false); // Close the sidebar when a menu item is clicked
+    if (window.innerWidth <= 768) {
+      setSidebarOpen(false); // Close the sidebar when a menu item is clicked on mobile
+    }
   };
 
   // Fetch admin, users, and logs data

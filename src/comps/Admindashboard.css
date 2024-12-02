@@ -213,4 +213,8 @@ body {
   .main-content .top-bar .hamburger-menu {
     display: block;
   }
+
+  .sidebar.open {
+    display: none; /* Hide sidebar when a menu item is clicked */
+  }
 }
