@@ -40,6 +40,24 @@
     animation: slideIn 0.5s ease-in-out;
 }
 
+.sidebar-active .sidebar {
+    display: flex;
+}
+
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger-menu div {
+    width: 30px;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 5px;
+}
+
 @keyframes slideIn {
     from {
         transform: translateX(-100%);
@@ -188,8 +206,20 @@
         display: flex;
     }
 
+    .sidebar-active .sidebar {
+        display: flex;
+    }
+
     .main-content {
         padding: 15px;
+    }
+
+    .hamburger-menu {
+        display: flex;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
     }
 
     .logs-table th,
