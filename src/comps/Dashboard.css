@@ -8,8 +8,8 @@
 /* Body Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, #0D1B2A, #1B263B, #415A77, #778DA9);
-    color: #E0E0E0;
+    background: linear-gradient(to right, #f0f4f8, #d9e2ec, #bcccdc, #9fb3c8);
+    color: #333;
     line-height: 1.6;
 }
 
@@ -29,12 +29,12 @@ body {
 /* Sidebar Styles */
 .sidebar {
     width: 260px;
-    background: linear-gradient(to bottom, #1B4F4F, #126666);
-    color: #FFFFFF;
+    background: linear-gradient(to bottom, #ffffff, #f0f4f8);
+    color: #333;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    border-right: 2px solid #0D3D3D;
+    border-right: 2px solid #d9e2ec;
     box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -42,8 +42,8 @@ body {
     font-size: 1.8rem;
     margin-bottom: 20px;
     text-align: center;
-    color: #FFFFFF;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar .user-info {
@@ -58,7 +58,7 @@ body {
 
 .sidebar .user-info p {
     font-size: 1rem;
-    color: #C0C0C0;
+    color: #666;
 }
 
 /* Navigation Links */
@@ -75,11 +75,11 @@ body {
     cursor: pointer;
     border-radius: 10px;
     transition: all 0.3s;
-    color: #FFFFFF;
+    color: #333;
 }
 
 .nav-links li:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transform: translateX(5px);
 }
@@ -98,7 +98,7 @@ body {
 .main-content {
     flex: 1;
     padding: 20px;
-    background: #F8F9FA;
+    background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
@@ -107,14 +107,14 @@ body {
 .content h2 {
     font-size: 2rem;
     margin-bottom: 15px;
-    color: #1B4F4F;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .content p {
     margin: 10px 0;
     font-size: 1rem;
-    color: #333333;
+    color: #666;
 }
 
 /* Update Form Styles */
@@ -127,7 +127,7 @@ body {
 
 .update-form input {
     padding: 12px;
-    border: 2px solid #D3D3D3;
+    border: 2px solid #d9e2ec;
     border-radius: 8px;
     font-size: 1rem;
     box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
@@ -144,8 +144,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background: linear-gradient(to right, #1B4F4F, #126666);
-    color: #FFFFFF;
+    background: linear-gradient(to right, #9fb3c8, #bcccdc);
+    color: #333;
     border: none;
     padding: 12px;
     border-radius: 10px;
@@ -155,7 +155,7 @@ body {
 }
 
 .update-form button:hover {
-    background: #67A6A1;
+    background: #d9e2ec;
     transform: scale(1.05);
 }
 
@@ -163,7 +163,7 @@ body {
 .loading {
     text-align: center;
     font-size: 1.5rem;
-    color: #67A6A1;
+    color: #9fb3c8;
     margin-top: 50px;
 }
 
@@ -178,7 +178,7 @@ body {
     .sidebar {
         width: 100%;
         box-shadow: none;
-        border-bottom: 2px solid #0D3D3D;
+        border-bottom: 2px solid #d9e2ec;
     }
 
     .main-content {

@@ -1,15 +1,16 @@
 :root {
-  --dark-bg: #040D12;
-  --dark-green: #183D3D;
-  --medium-green: #5C8374;
-  --light-green: #93B1A6;
-  --highlight-color: #FFD700;
+  --light-bg: #f0f4f8;
+  --primary-color: #9fb3c8;
+  --secondary-color: #bcccdc;
+  --highlight-color: #ffd700;
+  --text-color: #333;
+  --accent-color: #666;
 }
 
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: var(--dark-bg);
+  background-color: var(--light-bg);
   overflow: hidden;
 }
 
@@ -20,7 +21,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--light-green);
+  color: var(--text-color);
   text-align: center;
   position: relative;
   padding: 20px 10px;
@@ -30,14 +31,15 @@ body {
   font-size: 3rem;
   margin-bottom: 20px;
   font-weight: bold;
-  text-shadow: 2px 2px var(--dark-green);
+  color: var(--primary-color);
+  text-shadow: 1px 1px var(--secondary-color);
 }
 
 .subtitle {
   font-size: 1.5rem;
   margin-bottom: 40px;
   font-weight: 300;
-  color: var(--medium-green);
+  color: var(--accent-color);
 }
 
 .button-container {
@@ -56,34 +58,34 @@ body {
   transition: transform 0.2s ease;
   display: inline-block;
   background-color: var(--highlight-color);
-  color: var(--dark-bg);
+  color: var(--text-color);
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .login-btn {
-  background-color: var(--dark-green);
-  color: var(--light-green);
+  background-color: var(--primary-color);
+  color: var(--light-bg);
 }
 
 .signup-btn {
-  background-color: var(--medium-green);
-  color: var(--dark-bg);
+  background-color: var(--secondary-color);
+  color: var(--text-color);
 }
 
 .btn:hover {
   transform: scale(1.05);
-  background-color: var(--light-green);
+  background-color: var(--secondary-color);
 }
 
 .btn:active {
   transform: scale(0.95);
-  background-color: var(--medium-green);
+  background-color: var(--primary-color);
 }
 
 /* Sparkles */
 .sparkles-container {
-  position:absolute;
+  position: absolute;
   pointer-events: none;
   top: 0;
   left: 0;
