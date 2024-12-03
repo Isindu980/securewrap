@@ -21,11 +21,12 @@
 /* Dashboard container */
 .dashboard-container {
     display: flex;
-    height: 100vh;
+    height: calc(100vh - 60px); /* Adjust height to account for fixed top-bar */
     width: 100vw;
     background-color: var(--dark-bg);
     color: var(--text-color);
     overflow: hidden;
+    margin-top: 60px; /* Add margin-top to place it below the top-bar */
 }
 
 /* Sidebar styles */
@@ -111,6 +112,7 @@
 
 @keyframes fadeIn {
     from {
+    from {
         opacity: 0;
     }
     to {
@@ -132,10 +134,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: calc(100% - 260px); /* Adjust width to exclude sidebar width */
+    width: 100%;
     position: fixed;
     top: 0;
-    left: 260px; /* Position next to sidebar */
+    left: 0;
     height: 60px;
     background-color: var(--sidebar-bg);
     border-bottom: 1px solid #dee2e6;
