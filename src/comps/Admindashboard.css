@@ -22,11 +22,12 @@
 .dashboard-container {
     display: flex;
     height: calc(100vh - 60px); /* Adjust height to account for fixed top-bar */
-    width: 100vw;
+    width: calc(100vw - 260px); /* Adjust width to exclude sidebar width */
     background-color: var(--dark-bg);
     color: var(--text-color);
     overflow: hidden;
     margin-top: 60px; /* Add margin-top to place it below the top-bar */
+    margin-left: 260px; /* Add margin-left to place it next to the sidebar */
 }
 
 /* Sidebar styles */
@@ -119,7 +120,7 @@
         opacity: 1;
     }
 }
-
+}
 .main-content::-webkit-scrollbar {
     width: 12px;
 }
@@ -142,11 +143,6 @@
     background-color: var(--sidebar-bg);
     border-bottom: 1px solid #dee2e6;
     z-index: 1;
-}
-
-.top-bar h2 {
-    font-size: 2em;
-    color: var(--highlight-color);
 }
 
 /* Logs section */
