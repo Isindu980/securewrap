@@ -21,7 +21,6 @@
 /* Dashboard container */
 .dashboard-container {
     display: flex;
-    flex-direction: column;
     height: 100vh;
     width: 100vw;
     background-color: var(--dark-bg);
@@ -105,7 +104,7 @@
     overflow-y: auto;
     background: #ffffff;
     animation: fadeIn 0.5s ease-in-out;
-    margin-top: 0; /* Remove margin-top */
+    margin-top: 60px; /* Adjust margin-top to account for fixed top-bar */
     display: flex;
     flex-direction: column;
 }
@@ -133,9 +132,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0; /* Remove margin-bottom */
+    width: calc(100% - 260px); /* Adjust width to exclude sidebar width */
+    position: fixed;
+    top: 0;
+    left: 260px; /* Position next to sidebar */
+    height: 60px;
+    background-color: var(--sidebar-bg);
     border-bottom: 1px solid #dee2e6;
-    width: 100%;
+    z-index: 1;
 }
 
 .top-bar h2 {
