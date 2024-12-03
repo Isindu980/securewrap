@@ -104,6 +104,7 @@
     overflow-y: auto;
     background: #ffffff;
     animation: fadeIn 0.5s ease-in-out;
+    margin-top: 25px; /* Add margin-top to place it next to the top-bar */
 }
 
 @keyframes fadeIn {
