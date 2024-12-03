@@ -21,6 +21,7 @@
 /* Dashboard container */
 .dashboard-container {
     display: flex;
+    flex-direction: column;
     height: 100vh;
     width: 100vw;
     background-color: var(--dark-bg);
@@ -104,7 +105,9 @@
     overflow-y: auto;
     background: #ffffff;
     animation: fadeIn 0.5s ease-in-out;
-    margin-top: 25px; /* Add margin-top to place it next to the top-bar */
+    margin-top: 0; /* Remove margin-top */
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes fadeIn {
@@ -130,8 +133,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 0; /* Remove margin-bottom */
     border-bottom: 1px solid #dee2e6;
+    width: 100%;
 }
 
 .top-bar h2 {
